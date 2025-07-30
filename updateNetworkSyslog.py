@@ -23,7 +23,6 @@ def searchNetworks():
 
     return list(search_keywords), list(filter_keywords), list(tags_keywords)
 
-
 # Retrieve and filter networks based on the provided keywords.
 def filterNetworks(org_id: int, search_keywords: list, filter_keywords: list, tags_keywords: list):
     network_results = []
@@ -160,8 +159,6 @@ def updateRequest(network, new_syslog_servers):
                 print(f"Error in {network['name']}")
                 return False
 
-
-
 # Adjust the roles assigned to syslog servers to mitigate update errors.
 def removeRoles(removed, new_syslog_servers):
     roles = new_syslog_servers[0]['roles']
@@ -191,7 +188,6 @@ def removeRoles(removed, new_syslog_servers):
 
     return None
 
-
 def main():
     Search, Filter, Tags = searchNetworks()
     networks = filterNetworks(org_id, Search, Filter, Tags)
@@ -206,7 +202,6 @@ def main():
         sys.exit(1)
 
     return None
-
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,7 @@ import csv
 # Exports the information to CSV files.
 
 API_KEY = input("Input your API Key from the Meraki Dashboard:")
-org_id = 594302
+org_id = X
 dashboard = meraki.DashboardAPI(API_KEY)
 
 

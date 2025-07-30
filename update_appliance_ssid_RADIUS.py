@@ -11,8 +11,7 @@ API_KEY = input("Input your API Key from the Meraki Dashboard:")
 org_id = X
 dashboard = meraki.DashboardAPI(API_KEY)
 
-
-def Haku():
+def searchNetworks():
     Search = input("Search for networks (Enter = All): ").split(' ')
     Filter = input("Enter keywords to filter from results (Enter = None): ").split(' ')
     Tags = input("Enter tags you want to include in your search:").split(' ')
@@ -23,9 +22,7 @@ def Haku():
 
     return list(search_keywords), list(filter_keywords), list(tags_keywords)
 
-
 def SSID_conf():
-
     name =  input("Which SSID do you wish to update? (ie. Mtoimisto): ")
     radiusIp = input("Radius server IP: ")
     radiusSecret = input("Radius server secret/password: ")
@@ -50,7 +47,6 @@ def SSID_conf():
         }
 
     return dict(SSID_info)
-
 
 def filterNetworks(org_id: int, search_keywords: list, filter_keywords: list, tags_keywords):
     network_results = []
@@ -89,15 +85,12 @@ def filterNetworks(org_id: int, search_keywords: list, filter_keywords: list, ta
 
     return list(networks)
 
-
-
 def print_networks(NETWORKS: dict):
     for id in NETWORKS:
         print (NETWORKS[id])
         time.sleep(0.001)
 
     return None
-
 
 def updateSSIDS(NETWORKS: dict, SSID_info: dict):
     action_batches_ssid = []
@@ -168,7 +161,6 @@ def updateSSIDS(NETWORKS: dict, SSID_info: dict):
 
     return None
 
-
 def check_batch_status(org_id: int, batch_id: str):
     max_retries=30
     retries = 0
@@ -198,9 +190,8 @@ def check_batch_status(org_id: int, batch_id: str):
 
     return True
 
-
 def main():
-    Search, Filter, Tags = Haku()
+    Search, Filter, Tags = searchNetworks()
     SSID_info = SSID_conf()
     networks = filterNetworks(org_id, Search, Filter, Tags)
     print("You are configuring the following networks..\n")
@@ -220,7 +211,6 @@ def main():
         print("The program will close now.")
     
     return None
-
 
 if __name__ == "__main__":
     main()
